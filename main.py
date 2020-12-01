@@ -51,7 +51,7 @@ async def commit(message: types.Message, state: FSMContext):
     if message.text.lower() not in vars.available_boards:
         await message.reply(vars.wrong_board_message)
         return
-    sql.execute(f"UPDATE users SET ChosenBoard = ? WHERE id = ?", (message.text.lower(), message.chat.id))
+    sql.execute(f"UPDATE users SET ChosenBoard =? WHERE id =?", (message.text.lower(), message.chat.id))
     db.commit()
     await bot.send_message(message.chat.id,
                            f"Готово! Ваша текущая доска: {message.text.lower()}.\n" + vars.show_message)
@@ -86,24 +86,24 @@ async def edit_message(chat_id, message_id, current_thread):
     buttons = InlineKeyboardMarkup(row_width=2).add(vars.left_button, vars.right_button, url_button)
 
     try:
-        await bot.edit_message_media(media = media_object,
-                                     message_id = message_id,
-                                     chat_id = chat_id,
-                                     reply_markup = buttons)
+        await bot.edit_message_media(media=media_object,
+                                     message_id=message_id,
+                                     chat_id=chat_id,
+                                     reply_markup=buttons)
     except CantParseEntities:
         caption = caption[:caption.rfind("<")]
         media_object = media_preparation(media, caption)
-        await bot.edit_message_media(media = media_object,
-                                     message_id = message_id,
-                                     chat_id = chat_id,
-                                     reply_markup = buttons)
+        await bot.edit_message_media(media=media_object,
+                                     message_id=message_id,
+                                     chat_id=chat_id,
+                                     reply_markup=buttons)
     except:
         media = vars.no_image
         media_object = media_preparation(media, caption)
-        await bot.edit_message_media(media = media_object,
-                                     message_id = message_id,
-                                     chat_id = chat_id,
-                                     reply_markup = buttons)
+        await bot.edit_message_media(media=media_object,
+                                     message_id=message_id,
+                                     chat_id=chat_id,
+                                     reply_markup=buttons)
 
 
 @dp.callback_query_handler(lambda c: c.data)
