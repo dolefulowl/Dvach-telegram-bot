@@ -51,7 +51,7 @@ async def commit(message: types.Message, state: FSMContext):
     if message.text.lower() not in vars.available_boards:
         await message.reply(vars.wrong_board_message)
         return
-    sql.execute(f"UPDATE users SET ChosenBoard =? WHERE id =?", (message.text.lower(), message.chat.id))
+    sql.execute(f"UPDATE users SET ChosenBoard = ? WHERE id = ?", (message.text.lower(), message.chat.id))
     db.commit()
     await bot.send_message(message.chat.id,
                            f"Готово! Ваша текущая доска: {message.text.lower()}.\n" + vars.show_message)
