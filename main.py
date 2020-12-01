@@ -129,14 +129,7 @@ async def send_welcome(message: types.Message):
 
 async def update():
     # -------------------------------------DELETE OLD ONE
-    sql.execute('''DROP TABLE boards''')
-    db.commit()
-    # -------------------------------------CREAT NEW ONE
-    sql.execute("""CREATE TABLE boards (
-      board TEXT,
-      thread_url TEXT,
-      photo_url TEXT,
-      message TEXT)""")
+    sql.execute('''DELETE TABLE boards''')
     db.commit()
     # --------------------------------------
     for board in vars.available_boards:
