@@ -127,7 +127,7 @@ async def send_welcome(message: types.Message):
     await bot.send_message(message.chat.id, vars.help_message)
 
 
-def update():
+async def update():
     # -------------------------------------DELETE OLD ONE
     sql.execute('''DROP TABLE boards''')
     db.commit()
