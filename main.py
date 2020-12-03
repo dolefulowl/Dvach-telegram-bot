@@ -65,8 +65,7 @@ async def commit(message: types.Message, state: FSMContext):
 
 async def edit_message(chat_id, message_id, current_thread):
     current_board = sql.execute(f'SELECT ChosenBoard FROM users WHERE id = "{chat_id}"').fetchone()[0]
-    threads = sql.execute(
-        f"SELECT thread_url, photo_url, message FROM boards WHERE board = '{current_board}'").fetchall()
+    threads = sql.execute(f"SELECT thread_url, photo_url, message FROM boards WHERE board = '{current_board}'").fetchall()
 
     if current_thread > len(threads) - 1:
         current_thread = 0
