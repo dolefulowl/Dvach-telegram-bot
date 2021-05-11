@@ -51,6 +51,6 @@ def caption_preparation(message):
     if len(message) > 1024:
         message = message[:1000] + "..."
     message = re.sub('''&gt;|<sup>|</sup>|<sub>|</sub>''', "", message)
-    message = re.sub('''<br>|</br>''', "\n", message)
+    message = re.sub('''<br>''', "\n", message)
     return add_tegs(message)
 # --------------------------------------------------------------------------------------------------------
