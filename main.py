@@ -127,10 +127,10 @@ async def send_welcome(message: types.Message):
 
 
 async def update():
-    # -------------------------------------DELETE OLD ONE
+    # -----------DELETE OLD ONE----------
     sql.execute('''DELETE TABLE boards''')
     db.commit()
-    # --------------------------------------
+    # -----------------------------------
     for board in vars.available_boards:
         url = f'https://2ch.hk/{board}/catalog_num.json'
         body = urlopen(url).read()
