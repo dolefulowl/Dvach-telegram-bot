@@ -33,7 +33,9 @@ def media_preparation(media, caption):
 
 
 # --------------------------------------------------------------------------------------------------------
-def add_tegs(message):
+
+def caption_preparation(message):
+    def add_tegs(message):
     index = message.rfind
     if index("<strong>") > index("</strong>"):
         message = message + "</strong>"
@@ -43,10 +45,8 @@ def add_tegs(message):
         message = message[:index("<")]
     return message
 
-
-def caption_preparation(message):
     """A caption cannot contain more than 1024 characters, so we're gonna check it."""
-
+    
     message = del_span(message)
     if len(message) > 1024:
         message = message[:1000] + "..."
