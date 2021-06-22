@@ -92,17 +92,17 @@ async def edit_message(chat_id, message_id, current_thread):
     except CantParseEntities:
         caption = caption[:caption.rfind("<")]
         media_object = media_preparation(media, caption)
-        await bot.edit_message_media(media = media_object,
-                                     message_id = message_id,
-                                     chat_id = chat_id,
-                                     reply_markup = buttons)
+        await bot.edit_message_media(media=media_object,
+                                     message_id=message_id,
+                                     chat_id=chat_id,
+                                     reply_markup=buttons)
     except:
         media = vars.no_image
         media_object = media_preparation(media, caption)
-        await bot.edit_message_media(media = media_object,
-                                     message_id = message_id,
-                                     chat_id = chat_id,
-                                     reply_markup = buttons)
+        await bot.edit_message_media(media=media_object,
+                                     message_id=message_id,
+                                     chat_id=chat_id,
+                                     reply_markup=buttons)
 
 
 @dp.callback_query_handler(lambda c: c.data)
